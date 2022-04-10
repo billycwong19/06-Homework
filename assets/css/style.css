@@ -25,7 +25,7 @@ h2 {
 }
 h4, h5, h6 {
     color: var(--text-neutral);
-    
+
 }
 
 .dateAndTime {
@@ -36,11 +36,6 @@ h4, h5, h6 {
     background-color: rgba(71, 71, 136, 0.487);
 }
 
-.card-body {
-    flex: 1 0 auto;
-    padding: 3px;
-}
-
 .current {
     border-radius: 25px;
     background-image: var(--bs-gradient_2);
@@ -48,4 +43,40 @@ h4, h5, h6 {
 
 .submitBtn:active { 
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.currentStats {
+    padding: 0;
+
+}
+.uviCircle {
+    height:10px;
+    width: 10px;
+}
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: red;
+}
+
+.violet {
+    background-color: purple;
+}
+
+.weatherIcon {
+    object-fit: cover;
+
+}
+.weatherIconDiv {
+    padding: 0;
 }
