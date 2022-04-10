@@ -1,0 +1,51 @@
+:root {
+    --bs-gradient: linear-gradient(to left, rgba(255,0,0,0), rgb(71, 71, 136) );
+    --bs-gradient_2: linear-gradient(to left, rgb(71, 71, 136) , rgb(255, 255, 255) );
+    --text-light: rgb(251, 233, 210);
+    --text-neutral: rgb(71, 71, 136);
+}
+body {
+    background-color: var(--text-light);
+}
+
+.jumbotron {
+    color: var(--text-light);
+    padding-top: 2px;
+    height: 12vh;
+    padding-left: 10px;
+    background-image: var(--text-neutral);
+    
+}
+.current h1 {
+    font-size: 50px;
+}
+h2 {
+    color: var(--text-neutral);
+    height: max-content
+}
+h4, h5, h6 {
+    color: var(--text-neutral);
+    
+}
+
+.dateAndTime {
+    text-align: center;
+    color: var(--text-light);
+    border-radius: 5px;
+    height: min-content;
+    background-color: rgba(71, 71, 136, 0.487);
+}
+
+.card-body {
+    flex: 1 0 auto;
+    padding: 3px;
+}
+
+.current {
+    border-radius: 25px;
+    background-image: var(--bs-gradient_2);
+}
+
+.submitBtn:active { 
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
