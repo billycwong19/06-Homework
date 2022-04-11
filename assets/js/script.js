@@ -33,7 +33,7 @@ function citySearch(){
     }
 
 function cityNameSearch(cityName){    
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&units=imperial&appid=" + key, {
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&units=imperial&appid=" + key, {
         method: 'GET', 
         credentials: 'same-origin', 
         redirect: 'follow', 
@@ -59,7 +59,7 @@ function cityNameSearch(cityName){
 }
 
 function zipCodeSearch(zipCode){
-    fetch("http://api.openweathermap.org/geo/1.0/zip?zip=" + zipCode + "&units=imperial&appid=" + key, {
+    fetch("https://api.openweathermap.org/geo/1.0/zip?zip=" + zipCode + "&units=imperial&appid=" + key, {
         method: 'GET', 
         credentials: 'same-origin', 
         redirect: 'follow', 
@@ -188,15 +188,15 @@ function weatherSearch(cityLat, cityLon, cityName, stateName) {
 
 function fiveDayForecast(data){
     var forecastDiv = document.createElement('div')
-    forecastDiv.setAttribute('class', 'forecastDiv row justify-content-between')
+    forecastDiv.setAttribute('class', 'forecastDiv row justify-content-between pt-2 pl-4')
     currentContainer.append(forecastDiv)
     for (let i = 1; i <= 5; i++){
         
         var dayCard = document.createElement('div')
-        dayCard.setAttribute('class','dayCard col-6 col-md-2 col-lg-2')
+        dayCard.setAttribute('class','dayCard col-6 col-md-2 col-lg-2 p-0')
         forecastDiv.appendChild(dayCard)
         
-        var day = document.createElement('h3')
+        var day = document.createElement('h5')
         dayValue = moment.unix(data.daily[i].dt).utc();
         day.textContent = moment(dayValue._d).format('dddd')
         dayCard.append(day);
@@ -230,7 +230,11 @@ function init(){
 
 init();
 
-submitBtn.addEventListener("click", citySearch);
+submitBtn.addEventListener("click", function(){
+    var forecastDiv = document.querySelector('.forecastDiv')
+        forecastDiv.remove();
+        citySearch();
+});
 
 document.addEventListener('keyup', function(event){
     var target = event.key;

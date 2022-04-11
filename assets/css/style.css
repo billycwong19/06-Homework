@@ -23,7 +23,7 @@ h2 {
     color: var(--text-neutral);
     height: max-content
 }
-h4, h5, h6 {
+.cityCard h4 h5 h6 {
     color: var(--text-neutral);
 
 }
@@ -83,6 +83,9 @@ h4, h5, h6 {
     display: none;
 }
 .forecastDiv h3 {
+    color: var(--text-light)
+}
+.forecastDiv h5 {
     color: var(--text-light)
 }
 .forecastDiv p {
