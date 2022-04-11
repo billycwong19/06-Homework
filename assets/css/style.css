@@ -16,17 +16,23 @@ body {
     background-image: var(--text-neutral);
     
 }
-.current h1 {
+.cityCard h1 {
     font-size: 50px;
 }
 h2 {
     color: var(--text-neutral);
     height: max-content
 }
-.cityCard h4 h5 h6 {
+.cityCard h4 {
     color: var(--text-neutral);
-
 }
+.cityCard h5 {
+    color: var(--text-neutral);
+}
+.cityCard h6 {
+    color: var(--text-neutral);
+}
+
 
 .dateAndTime {
     text-align: center;
@@ -41,10 +47,6 @@ h2 {
     background-image: var(--bs-gradient_2);
 }
 
-.submitBtn:active { 
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
 .currentStats {
     padding: 0;
 
@@ -52,6 +54,9 @@ h2 {
 .uviCircle {
     height:10px;
     width: 10px;
+    position: relative;
+    top:-10px;
+    right: 5px;
 }
 .green {
     background-color: green;
@@ -82,12 +87,28 @@ h2 {
     border-radius: 25px;
     display: none;
 }
-.forecastDiv h3 {
-    color: var(--text-light)
-}
+
 .forecastDiv h5 {
     color: var(--text-light)
 }
 .forecastDiv p {
-    color: var(--text-light);
+    color: whitesmoke;
 }
+#sortable { 
+    list-style-type: none; 
+    padding-left: 0;
+}
+
+#sortable li { 
+    /* padding: 0.4em; 
+    padding-left: 1.5em; 
+    font-size: 1.4em; 
+    height: 18px;  */
+    border-bottom: solid black 2px;
+}
+
+/* #sortable li span { 
+    position: absolute; 
+    margin-left: -1.3em; 
+} */
+
