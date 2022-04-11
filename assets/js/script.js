@@ -33,8 +33,18 @@ function citySearch(){
     }
 
 function cityNameSearch(cityName){    
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&units=imperial&appid=" + key)
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&units=imperial&appid=" + key, {
+        method: 'GET', 
+        credentials: 'same-origin', 
+        redirect: 'follow', 
+        })
     .then(function (response) {
+        if (response.status !== 200) {
+            var responseText = document.createElement('h1')
+            responseText.setAttribute('class', 'responseText')
+            responseText.textContent = response.status + " dude! Try again!";
+            currentContainer.append(responseText)
+        }
         return response.json();
     })
         .then(function (data) {
@@ -49,7 +59,11 @@ function cityNameSearch(cityName){
 }
 
 function zipCodeSearch(zipCode){
-    fetch("http://api.openweathermap.org/geo/1.0/zip?zip=" + zipCode + "&units=imperial&appid=" + key)
+    fetch("http://api.openweathermap.org/geo/1.0/zip?zip=" + zipCode + "&units=imperial&appid=" + key, {
+        method: 'GET', 
+        credentials: 'same-origin', 
+        redirect: 'follow', 
+        })
     .then(function (response) {
         if (response.status !== 200) {
             var responseText = document.createElement('h1')
@@ -67,7 +81,11 @@ function zipCodeSearch(zipCode){
 }
 
 function weatherSearch(cityLat, cityLon, cityName, stateName) {
-    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "& units=imperial&appid=" + key)
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "& units=imperial&appid=" + key, {
+        method: 'GET', 
+        credentials: 'same-origin', 
+        redirect: 'follow', 
+        })
     .then(function (response) {
         return response.json();
       })
@@ -108,11 +126,23 @@ function weatherSearch(cityLat, cityLon, cityName, stateName) {
             cityCard.append(weatherAdvisory)
         }
 
-        var weeklyForecast = document.createElement('button');
-        weeklyForecast.setAttribute('type','submit')
+        var weeklyForecast = document.createElement('input');
+        weeklyForecast.setAttribute('type', 'submit')
+        weeklyForecast.setAttribute('value',"5-Day Forecast")
         weeklyForecast.setAttribute('class','weeklyForecast btn btn-primary btn-md')
-        weeklyForecast.textContent = "5 Day Forecast"
+        weeklyForecast.setAttribute('id','weeklyForecast')
         cityCard.append(weeklyForecast)
+
+        var weatherIconDiv = document.createElement('div')
+        weatherIconDiv.setAttribute('class','weatherIconDiv col-4 d-flex align-items-center')
+        current.append(weatherIconDiv)
+
+        var weatherIcon = document.createElement('img');
+        weatherIcon.setAttribute('class','weatherIcon')
+        var grabIcon = data.current.weather[0].icon;
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + grabIcon + "@2x.png"
+        weatherIconDiv.append(weatherIcon)
+        fiveDayForecast(data);
 
         // current wind speed, uv index, and humidity
         var currentStats = document.createElement('div')
@@ -122,7 +152,7 @@ function weatherSearch(cityLat, cityLon, cityName, stateName) {
         var currentHumidity = document.createElement('h5');
         currentHumidity.setAttribute('class', 'text-warning w-100')
         var grabCurrentHumidity = data.current.humidity
-        currentHumidity.textContent = "Humidity: " + grabCurrentHumidity;
+        currentHumidity.textContent = "Humidity: " + grabCurrentHumidity + "%";
         currentStats.append(currentHumidity)
 
         var currentUvi = document.createElement('h5');
@@ -150,52 +180,79 @@ function weatherSearch(cityLat, cityLon, cityName, stateName) {
         var currentWind = document.createElement('h5');
         currentWind.setAttribute('class', 'text-warning w-100')
         var grabCurrentWind = data.current.wind_speed;
-        currentWind.textContent = "Wind Speed: " + grabCurrentWind;
+        currentWind.textContent = "Wind Speed: " + grabCurrentWind + " mph";
         currentStats.append(currentWind)
 
-        var weatherIconDiv = document.createElement('div')
-        weatherIconDiv.setAttribute('class','weatherIconDiv col-5 d-flex justify-content-center')
-        current.appendChild(weatherIconDiv)
+    })
+}
 
-        var weatherIcon = document.createElement('img');
-        weatherIcon.setAttribute('class','weatherIcon')
-        var grabIcon = data.current.weather[0].icon;
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + grabIcon + "@2x.png"
-        weatherIconDiv.append(weatherIcon)
-      })
-    }
-
-function fiveDayForecast(){
-    console.log(data.daily)
+function fiveDayForecast(data){
     var forecastDiv = document.createElement('div')
-    forecastDiv.setAttribute('class', 'forecastDiv')
-    currentContainer.appendChild(forecastDiv)
-    for (let i = 0; i <= 5; i++){
+    forecastDiv.setAttribute('class', 'forecastDiv row justify-content-between')
+    currentContainer.append(forecastDiv)
+    for (let i = 1; i <= 5; i++){
+        
         var dayCard = document.createElement('div')
         dayCard.setAttribute('class','dayCard col-6 col-md-2 col-lg-2')
         forecastDiv.appendChild(dayCard)
-        var day = document.createElement('')
+        
+        var day = document.createElement('h3')
+        dayValue = moment.unix(data.daily[i].dt).utc();
+        day.textContent = moment(dayValue._d).format('dddd')
+        dayCard.append(day);
 
+        var dayTemp = document.createElement('h1')
+        dayTemp.textContent = Math.floor((data.daily[i].feels_like.day - 273.15) * 9 / 5 + 32) + "°";
+        dayTemp.setAttribute('class', 'w-50')
+        dayCard.append(dayTemp)
+
+        var weatherIcon = document.createElement('img');
+        weatherIcon.setAttribute('class','weatherIcon w-50')
+        var grabIcon = data.daily[i].weather[0].icon;
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + grabIcon + "@2x.png"
+        dayCard.append(weatherIcon)
+
+        var dayWind = document.createElement('p')
+        dayWind.textContent = "Wind: " + Math.floor(data.daily[i].wind_speed) + "mph";
+        dayCard.append(dayWind)
+
+        var dayHumidity = document.createElement('p')
+        dayHumidity.textContent = "Humidity: " + data.daily[i].humidity + "%";
+        dayCard.append(dayHumidity)
     }
+    forecastDiv.setAttribute('style','display: none;')
 }
 
 function init(){
     updateTime();
     citySearch();
-    
 }
 
 init();
 
 submitBtn.addEventListener("click", citySearch);
+
 document.addEventListener('keyup', function(event){
     var target = event.key;
         if (target === "Enter"){
+            var forecastDiv = document.querySelector('.forecastDiv')
+            forecastDiv.remove();
             citySearch();
+            
         }
 })
-var weeklyForecast = document.querySelector('.weeklyForecast')
-weeklyForecast.addEventListener("click", fiveDayForecast)
+
+document.addEventListener("click", function (event){
+    var forecastDiv = document.querySelector('.forecastDiv')
+    console.log(forecastDiv.style.display)
+        if (event.target.id === "weeklyForecast") {
+            if (forecastDiv.style.display === "none"){
+            forecastDiv.setAttribute('style','display: flex;')
+        } else {
+            forecastDiv.setAttribute('style','display: none;')
+        }
+    }
+})
 
 
 // searchCard.addEventListener("submit", search)
