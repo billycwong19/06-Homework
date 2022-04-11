@@ -11,30 +11,36 @@ var updateTime = function() {
 setInterval(updateTime, 1000);
 
 function citySearch(cityName){
-    if (cityName) {
-        cityNameSearch(cityName)
-    }
     var current = document.querySelector('.current');
+    var forecastDiv = document.querySelector('.forecastDiv');
     var responseText = document.querySelector('.responseText')
     if (responseText) {
-    responseText.remove();
+        responseText.remove();
     }
-    if (current) {
-        var forecastDiv = document.querySelector('.forecastDiv')
+    if (current && forecastDiv) {
         forecastDiv.remove();
         current.remove();
+        }
+    if (cityName && current && forecastDiv) {
+        forecastDiv.remove();
+        current.remove();
+        return cityNameSearch(cityName);
+    } else if (cityName && !current && !forecastDiv){
+        return cityNameSearch(cityName);
+    } else if (!cityName && !current && !forecastDiv && citySearchText.value === ""){
+        var cityName = "Austin"
+        return cityNameSearch(cityName)
+    } else {
         if (citySearchText.value[0] >= 0){
             var zipCode = citySearchText.value
-                return zipCodeSearch(zipCode)
+            return zipCodeSearch(zipCode)
         } else {
             cityName = citySearchText.value;
             return cityNameSearch(cityName);
         }
-    } else {
-        cityName = "austin";
-        }
-        cityNameSearch(cityName)
     }
+}
+
 
 var cities = ["New York City", "Paris", "London", "Hong Kong", "Los Angeles"]
 function pastCities(){
@@ -71,6 +77,12 @@ function cityNameSearch(cityName){
     })
         .then(function (data) {
             console.log(data)
+            var current = document.querySelector('.current');
+            var forecastDiv = document.querySelector('.forecastDiv')
+            if (current && forecastDiv) {
+                forecastDiv.remove();
+                current.remove();
+            }
             var cityLat = data[0].lat;
             var cityLon = data[0].lon;
             var cityName = data[0].name;
@@ -272,16 +284,22 @@ init();
 
 submitBtn.addEventListener("click", function(){
     var forecastDiv = document.querySelector('.forecastDiv')
+    var current = document.querySelector('.current');
+    if (current && forecastDiv) {
         forecastDiv.remove();
+        current.remove();
         citySearch();
+    }
 });
 
 document.addEventListener('keyup', function(event){
     var target = event.key;
+    var current = document.querySelector('.current');
     var forecastDiv = document.querySelector('.forecastDiv')
         if (target === "Enter" && !forecastDiv){
             citySearch();
-        } else if (target === "Enter" && forecastDiv){
+        } else if (target === "Enter" && forecastDiv && current){
+            current.remove();
             forecastDiv.remove();
             citySearch();
         }
