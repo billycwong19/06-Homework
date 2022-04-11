@@ -285,6 +285,10 @@ init();
 submitBtn.addEventListener("click", function(){
     var forecastDiv = document.querySelector('.forecastDiv')
     var current = document.querySelector('.current');
+    var responseText = document.querySelector('.responseText')
+    if (responseText) {
+        responseText.remove();
+    }
     if (current && forecastDiv) {
         forecastDiv.remove();
         current.remove();
@@ -296,13 +300,17 @@ document.addEventListener('keyup', function(event){
     var target = event.key;
     var current = document.querySelector('.current');
     var forecastDiv = document.querySelector('.forecastDiv')
-        if (target === "Enter" && !forecastDiv){
-            citySearch();
-        } else if (target === "Enter" && forecastDiv && current){
-            current.remove();
-            forecastDiv.remove();
-            citySearch();
-        }
+    var responseText = document.querySelector('.responseText')
+    if (responseText) {
+        responseText.remove();
+    }
+    if (target === "Enter" && !forecastDiv){
+        citySearch();
+    } else if (target === "Enter" && forecastDiv && current){
+        current.remove();
+        forecastDiv.remove();
+        citySearch();
+    }
 })
 document.addEventListener("click", function (event){
     var forecastDiv = document.querySelector('.forecastDiv')
