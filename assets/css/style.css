@@ -8,6 +8,10 @@ body {
     background-color: var(--text-light);
 }
 
+.searchCard h4 {
+    color: var(--text-neutral)
+}
+
 .jumbotron {
     color: var(--text-light);
     padding-top: 2px;
