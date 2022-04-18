@@ -21,7 +21,11 @@ function citySearch(cityName){
         forecastDiv.remove();
         current.remove();
         }
-    if (cityName && current && forecastDiv) {
+    if (cityName && cityName[0] >= 0 && current && forecastDiv) {
+        forecastDiv.remove();
+        current.remove();
+        return zipCodeSearch(cityName)
+    } else if (cityName && current && forecastDiv) {
         forecastDiv.remove();
         current.remove();
         return cityNameSearch(cityName);
@@ -43,12 +47,12 @@ function citySearch(cityName){
 // generated list of past cities. i broke the code here and finally got it to spit out something but its really buggy
 function pastCities(cities){
     var cityList = document.createElement('ul')
+    cityList.setAttribute('class','sortable')
     cityList.setAttribute('id','sortable')
     searchCard.append(cityList)
     $( "#sortable" ).sortable();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < cities.length; i++) {
         var city = document.createElement('li')
-        city.setAttribute('class', 'city' + i)
         cityList.append(city)
         var citySpan = document.createElement('span')
         citySpan.setAttribute('id', "city-name")
@@ -58,16 +62,12 @@ function pastCities(cities){
 
 }
 // this is part of the bugs. it generates array items based on input stored in the local storage
-var i = 1
-function changePastCities(){
+function changePastCities(cityName){
     var cities = [];
-    var lastCity = JSON.parse(localStorage.getItem('city' + i));
-    localStorage.setItem('city' + (i + 1), JSON.stringify(lastCity));
-    i++
+    var lastCity = cityName
     cities.unshift(lastCity);
     console.log(cities)
     pastCities(cities);
-    
 }
 
 // routed from the sorter it takes a zip code and returns a city name and passes that as an argument to the next function
@@ -121,14 +121,7 @@ function cityNameSearch(cityName){
             var cityLon = data[0].lon;
             var cityName = data[0].name;
             var stateName = data[0].state;
-            
-            if (x === 6){
-                x = 1;
-                console.log(x)
-            }
-            localStorage.setItem('city' + x, JSON.stringify(cityName))
-            x += 1
-
+            changePastCities(cityName)
             weatherSearch(cityLat, cityLon, cityName, stateName)
     })
 }
@@ -253,7 +246,7 @@ function fiveDayForecast(data){
     for (let i = 1; i <= 5; i++){
         
         var dayCard = document.createElement('div')
-        dayCard.setAttribute('class','dayCard col-6 col-md-2 col-lg-2 pl-2')
+        dayCard.setAttribute('class','dayCard col-5 col-md-2 col-lg-2 pl-2')
         forecastDiv.appendChild(dayCard)
         // the day of the week
         var day = document.createElement('h5')
@@ -302,7 +295,6 @@ submitBtn.addEventListener("click", function(){
         forecastDiv.remove();
         current.remove();
         citySearch();
-        changePastCities();
         citySearchText.value = ""
     }
 });
@@ -321,7 +313,6 @@ document.addEventListener('keyup', function(event){
         current.remove();
         forecastDiv.remove();
         citySearch();
-        changePastCities();
         citySearchText.value = ""
     }
 })

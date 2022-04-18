@@ -93,14 +93,20 @@ h2 {
 }
 
 .forecastDiv h5 {
-    color: var(--text-light)
+    color: var(--text-light);
+    position: relative;
+
+}
+.dayCard {
+    padding-left: 20px;
 }
 .forecastDiv p {
     color: whitesmoke;
 }
-#sortable { 
+.sortable { 
     list-style-type: none; 
     padding-left: 0;
+    margin-top: 5px;
 }
 
 #sortable li { 
@@ -111,8 +117,5 @@ h2 {
     border-bottom: solid black 2px;
 }
 
-/* #sortable li span { 
-    position: absolute; 
-    margin-left: -1.3em; 
-} */
+
 
