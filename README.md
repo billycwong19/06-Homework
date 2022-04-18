@@ -1,10 +1,4 @@
-# 06-Homework
-## by William Wong
-### The Weather Report Website
-### Site viewable here: https://billycwong19.github.io/06-Homework/
-#### The Weather Report was a tough one for me. I got caught up in a lot of functionality quirks and found a lot of bugs and kept churning through the mud. I did find a good stopping point, and I'm happy with the result, but there are bugs still, and if I kept going I would have done way more than what was necessary for the assignment. I had fun at first, but then I realized I bit off way more than I could chew. So, I think perhaps a more strategic approach next time will help me sift through code better.
-###### ![ScreenShot](./images/screenshot.png "screen shot of weather website")
-<div id="top"></div>
+
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -23,31 +17,26 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][https://github.com/billycwong19]
-[![MIT License][license-shield]][/Users/williamwong/Desktop/Bootcamp/Homework/06-Homework/LICENSE]
+[![Contributors][contributors-shield]][contributors-url]
+[![MIT License][license-shield]][license-url]
 
 
 
 <!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">The Weather Report</h3>
 
   <p align="center">
-    project_description
+    The Weather Report is an application created with data from the OpenWeather API. It responds to user input by displaying the requested city and the current weather as well as the forecast for the next 5 days. After a search is completed the name of the city is saved on screen as part of the users search history, and then the city weather data can be accessed when the user clicks on a city in the search history.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/billycwong19/The-Weather-Report"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/billycwong19/The-Weather-Report">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/billycwong19/The-Weather-Report/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/billycwong19/The-Weather-Report/issues">Request Feature</a>
   </p>
 </div>
 
@@ -84,7 +73,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/billycwong19/The-Weather-Report/blob/31df3fc7f9536d8632a3395ac04ad00a25433519/images/screenshot.png)
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
@@ -126,7 +115,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/billycwong19/The-Weather-Report.git
    ```
 3. Install NPM packages
    ```sh
@@ -160,7 +149,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/billycwong19/The-Weather-Report/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -198,7 +187,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/billycwong19/The-Weather-Report](https://github.com/billycwong19/The-Weather-Report)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -217,16 +206,16 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/billycwong19/The-Weather-Report.svg?style=for-the-badge
+[contributors-url]: https://github.com/billycwong19/The-Weather-Report/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/billycwong19/The-Weather-Report.svg?style=for-the-badge
+[forks-url]: https://github.com/billycwong19/The-Weather-Report/network/members
+[stars-shield]: https://img.shields.io/github/stars/billycwong19/The-Weather-Report.svg?style=for-the-badge
+[stars-url]: https://github.com/billycwong19/The-Weather-Report/stargazers
+[issues-shield]: https://img.shields.io/github/issues/billycwong19/The-Weather-Report.svg?style=for-the-badge
+[issues-url]: https://github.com/billycwong19/The-Weather-Report/issues
+[license-shield]: https://img.shields.io/github/license/billycwong19/The-Weather-Report.svg?style=for-the-badge
+[license-url]: https://github.com/billycwong19/The-Weather-Report/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
